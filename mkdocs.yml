@@ -1,0 +1,69 @@
+site_name: WERKHub
+site_description: The local, governed MCP control plane for AI agents.
+site_url: https://shuwajaja.github.io/WERKHub/
+repo_url: https://github.com/Shuwajaja/WERKHub
+repo_name: Shuwajaja/WERKHub
+
+theme:
+  name: material
+  logo: assets/seam-w.svg
+  favicon: assets/seam-w.svg
+  palette:
+    scheme: slate
+    primary: indigo
+    accent: indigo
+  features:
+    - navigation.sections
+    - navigation.top
+    - content.code.copy
+    - search.suggest
+  font:
+    text: Inter
+    code: IBM Plex Mono
+
+extra_css:
+  - stylesheets/werkhub.css
+
+validation:
+  nav:
+    omitted_files: ignore
+
+
+exclude_docs: |
+  ACCEPTANCE_MATRIX.md
+  DESIGN.md
+  launch-drafts/
+
+# Build only the curated site. The internal planning/wave docs and gitignored
+# launch-drafts stay on disk but are kept out of the published site + --strict
+# link checking (they carry repo-relative links that are not site pages).
+
+markdown_extensions:
+  - admonition
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - pymdownx.details
+  - pymdownx.inlinehilite
+
+nav:
+  - Home: index.md
+  - Getting started: getting-started.md
+  - Onboarding your MCPs: onboarding.md
+  - Concepts: concepts.md
+  - Dashboard: dashboard.md
+  - Registry & capabilities: registry.md
+  - Bench matrix: bench.md
+  - CLI reference: cli.md
+  - Security model: security.md
+  - Skill library: skills-library/README.md
+  - Architecture:
+    - ADR-001 Two policy models: adr/ADR-001-two-policy-models.md
+    - ADR-002 Store bridge: adr/ADR-002-store-bridge.md
+    - ADR-003 WERK/WERKHub boundary: adr/ADR-003-werk-werkhub-boundary.md
+    - ADR-004 String trust tiers: adr/ADR-004-string-trust-tiers.md
+    - ADR-005 Tier-1 allowlist gate: adr/ADR-005-tier1-allowlist-gate.md
+    - ADR-006 Cross-harness standard: adr/ADR-006-cross-harness-standard.md

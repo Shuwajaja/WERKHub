@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#c4ccd6" role="img" aria-label="WERKAgent">
+  <title>WERKAgent</title>
+  <polyline points="3,4 7,20 10.5,7" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square" stroke-linejoin="miter"/>
+  <polyline points="13.5,7 17,20 21,4" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square" stroke-linejoin="miter"/>
+</svg>

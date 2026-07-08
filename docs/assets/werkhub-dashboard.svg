@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 660" role="img" aria-label="WERK HUB Bento control-plane dashboard preview: fleet health, trust-posture, agent runtimes, and the hash-chained evidence ledger"
+  font-family="Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif">
+  <defs>
+    <radialGradient id="glow" cx="78%" cy="-8%" r="60%">
+      <stop offset="0" stop-color="#6b78d6" stop-opacity="0.07"/>
+      <stop offset="0.6" stop-color="#6b78d6" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="surf" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#171a1f"/>
+      <stop offset="1" stop-color="#131519"/>
+    </linearGradient>
+    <linearGradient id="topbar" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#131519"/>
+      <stop offset="1" stop-color="#0c0d10"/>
+    </linearGradient>
+  </defs>
+
+  <!-- ground + indigo glow + outer frame -->
+  <rect width="1280" height="660" fill="#07080a"/>
+  <rect width="1280" height="660" fill="url(#glow)"/>
+  <rect x="16.5" y="16.5" width="1247" height="627" rx="16" fill="#0c0d10" stroke="#20242c"/>
+
+  <!-- ===== top bar : Seam-W mark (platinum) + WERK HUB wordmark ===== -->
+  <rect x="17" y="17" width="1246" height="58" rx="16" fill="url(#topbar)"/>
+  <rect x="17" y="73" width="1246" height="1" fill="#20242c"/>
+  <!-- Seam-W: two chevrons meeting at a central seam void; the void IS the mark -->
+  <g transform="translate(42,29) scale(1.55)" stroke="#c4ccd6" stroke-width="3" fill="none" stroke-linecap="square" stroke-linejoin="miter">
+    <polyline points="3,4 7,20 10.5,7"/>
+    <polyline points="13.5,7 17,20 21,4"/>
+  </g>
+  <text x="86" y="53" font-family="Space Grotesk,system-ui,sans-serif" font-size="20" font-weight="600" letter-spacing="3.1" fill="#c4ccd6">ERK HUB</text>
+  <text x="246" y="52" font-size="12.5" fill="#737d94">local control plane</text>
+  <!-- nav: indigo = interaction (active tab only) -->
+  <g font-size="13" fill="#8b93a3">
+    <rect x="470" y="34" width="64" height="24" rx="6" fill="#1c2026" stroke="#2a2f39"/>
+    <text x="502" y="50" text-anchor="middle" fill="#e8ecf2">Board</text>
+    <text x="556" y="50">Connectors</text>
+    <text x="668" y="50">Runtimes</text>
+    <text x="758" y="50">Ledger</text>
+    <text x="832" y="50">Registry</text>
+  </g>
+  <circle cx="1085" cy="46" r="4" fill="#4ea46e"/>
+  <text x="1098" y="50" font-family="IBM Plex Mono,ui-monospace,monospace" font-size="11.5" fill="#8b93a3">local · 127.0.0.1:8787</text>
+
+  <!-- ===== Card: Fleet health ===== -->
+  <rect x="40" y="100" width="372" height="190" rx="12" fill="url(#surf)" stroke="#20242c"/>
+  <text x="64" y="134" font-family="Inter,system-ui" font-size="11" letter-spacing="1.3" fill="#8b93a3">FLEET HEALTH</text>
+  <text x="62" y="206" font-family="IBM Plex Mono,ui-monospace,monospace" font-size="64" font-weight="600" fill="#e8ecf2">3<tspan font-size="28" fill="#4a5060"> / 3</tspan></text>
+  <text x="64" y="236" font-size="14.5" fill="#8b93a3">connectors online</text>
+  <!-- rectangular governance stamps (3px radius), color never the only signal -->
+  <rect x="64" y="252" width="92" height="22" rx="3" fill="none" stroke="#4ea46e"/>
+  <text x="110" y="267" text-anchor="middle" font-size="11.5" fill="#4ea46e">0 at-risk</text>
+  <rect x="166" y="252" width="132" height="22" rx="3" fill="none" stroke="#2a2f39"/>
+  <text x="232" y="267" text-anchor="middle" font-size="11.5" fill="#b0b8c8">deny-by-default</text>
+
+  <!-- ===== Card: Trust posture ===== -->
+  <rect x="432" y="100" width="372" height="190" rx="12" fill="url(#surf)" stroke="#20242c"/>
+  <text x="456" y="134" font-family="Inter,system-ui" font-size="11" letter-spacing="1.3" fill="#8b93a3">TRUST POSTURE</text>
+  <g transform="translate(540,210)">
+    <circle r="50" fill="none" stroke="#1c2026" stroke-width="16"/>
+    <circle r="50" fill="none" stroke="#4ea46e" stroke-width="16" stroke-dasharray="219.9 314.2" stroke-dashoffset="0" transform="rotate(-90)"/>
+    <circle r="50" fill="none" stroke="#b9c2d6" stroke-width="16" stroke-dasharray="62.8 314.2" stroke-dashoffset="-219.9" transform="rotate(-90)"/>
+    <circle r="50" fill="none" stroke="#8b93a3" stroke-width="16" stroke-dasharray="31.4 314.2" stroke-dashoffset="-282.7" transform="rotate(-90)"/>
+    <text y="-1" text-anchor="middle" font-family="IBM Plex Mono,ui-monospace,monospace" font-size="23" font-weight="600" fill="#e8ecf2">70%</text>
+    <text y="18" text-anchor="middle" font-size="11.5" fill="#8b93a3">Official</text>
+  </g>
+  <g font-size="12.5" transform="translate(636,168)">
+    <rect x="0" y="0" width="11" height="11" rx="2" fill="#4ea46e"/><text x="20" y="10" fill="#b0b8c8">Official</text>
+    <rect x="0" y="29" width="11" height="11" rx="2" fill="#b9c2d6"/><text x="20" y="39" fill="#b0b8c8">Security-Scanned</text>
+    <rect x="0" y="58" width="11" height="11" rx="2" fill="#8b93a3"/><text x="20" y="68" fill="#b0b8c8">Community-Unverified</text>
+  </g>
+
+  <!-- ===== Card: Agent runtimes (colored vendor glyphs, operator-approved) ===== -->
+  <rect x="824" y="100" width="416" height="190" rx="12" fill="url(#surf)" stroke="#20242c"/>
+  <text x="848" y="134" font-family="Inter,system-ui" font-size="11" letter-spacing="1.3" fill="#8b93a3">AGENT RUNTIMES</text>
+  <g font-size="13.5" fill="#e8ecf2">
+    <g transform="translate(848,158)"><circle cx="6" cy="6" r="6" fill="#d97757"/><text x="22" y="11">Claude Code</text><text x="150" y="11" font-size="11.5" fill="#4ea46e">detected</text></g>
+    <g transform="translate(848,188)"><circle cx="6" cy="6" r="6" fill="#10a37f"/><text x="22" y="11">Codex</text><text x="150" y="11" font-size="11.5" fill="#4ea46e">detected</text></g>
+    <g transform="translate(848,218)"><circle cx="6" cy="6" r="6" fill="#5b9bff"/><text x="22" y="11">Cursor</text><text x="150" y="11" font-size="11.5" fill="#4ea46e">detected</text></g>
+    <g transform="translate(1048,158)"><circle cx="6" cy="6" r="6" fill="#8957e5"/><text x="22" y="11">Gemini</text><rect x="120" y="-2" width="66" height="17" rx="3" fill="none" stroke="#d7a13a"/><text x="153" y="11" font-size="10.5" fill="#d7a13a" text-anchor="middle">at-risk</text></g>
+    <g transform="translate(1048,188)"><circle cx="6" cy="6" r="6" fill="#3a3f4a"/><text x="22" y="11" fill="#737d94">Windsurf</text><text x="150" y="11" font-size="11.5" fill="#737d94">missing</text></g>
+  </g>
+  <text x="848" y="270" font-size="11.5" fill="#737d94">token health: presence + date only — never the value</text>
+
+  <!-- ===== Wide card: Evidence ledger ===== -->
+  <rect x="40" y="310" width="1200" height="298" rx="12" fill="url(#surf)" stroke="#20242c"/>
+  <text x="64" y="344" font-family="Inter,system-ui" font-size="11" letter-spacing="1.3" fill="#8b93a3">EVIDENCE LEDGER — HASH-CHAINED, APPEND-ONLY</text>
+  <!-- rectangular audit stamp (governance shape law), green = verified -->
+  <rect x="1092" y="328" width="124" height="24" rx="3" fill="none" stroke="#4ea46e"/>
+  <circle cx="1110" cy="340" r="3.5" fill="#4ea46e"/>
+  <text x="1124" y="344" font-size="12" fill="#4ea46e">chain verified</text>
+  <g font-family="IBM Plex Mono,ui-monospace,monospace" font-size="13">
+    <g transform="translate(64,380)"><rect x="-10" y="-15" width="1148" height="28" rx="5" fill="#0c0d10"/><text x="0" y="4" fill="#737d94">10:42:18Z</text><text x="116" y="4" fill="#4ea46e">tool.call.completed</text><text x="352" y="4" fill="#b0b8c8">profile=balanced · tool=grafana.query</text><text x="978" y="4" fill="#4a5060">#a17f…3c</text></g>
+    <g transform="translate(64,416)"><text x="0" y="4" fill="#737d94">10:42:05Z</text><text x="116" y="4" fill="#d7a13a">approval.minted</text><text x="352" y="4" fill="#b0b8c8">risk=write · one-use · args-bound</text><text x="978" y="4" fill="#4a5060">#9d2a…f1</text></g>
+    <g transform="translate(64,452)"><rect x="-10" y="-15" width="1148" height="28" rx="5" fill="#0c0d10"/><text x="0" y="4" fill="#737d94">10:41:52Z</text><text x="116" y="4" fill="#e0584e">tool.call.denied</text><text x="352" y="4" fill="#b0b8c8">reason=unknown-risk tool fails closed</text><text x="978" y="4" fill="#4a5060">#7b04…aa</text></g>
+    <g transform="translate(64,488)"><text x="0" y="4" fill="#737d94">10:41:30Z</text><text x="116" y="4" fill="#b0b8c8">registry.search</text><text x="352" y="4" fill="#b0b8c8">query=postgres · results=4</text><text x="978" y="4" fill="#4a5060">#5e9c…02</text></g>
+    <g transform="translate(64,524)"><rect x="-10" y="-15" width="1148" height="28" rx="5" fill="#0c0d10"/><text x="0" y="4" fill="#737d94">10:41:11Z</text><text x="116" y="4" fill="#b0b8c8">runtime.probed</text><text x="352" y="4" fill="#b0b8c8">hosts=9 · detected=3 · at-risk=1</text><text x="978" y="4" fill="#4a5060">#0001…00</text></g>
+  </g>
+  <text x="64" y="582" font-size="12" fill="#737d94">each record links the previous hash — a forged entry breaks the chain and is flagged, not served as clean evidence</text>
+
+  <!-- footer tagline -->
+  <text x="640" y="636" text-anchor="middle" font-size="13" fill="#737d94">deny-by-default · one-use argument-bound approval tokens · tamper-evident ledger · presence-only secrets · pure stdlib · runs on your machine</text>
+</svg>

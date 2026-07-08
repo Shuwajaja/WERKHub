@@ -1,0 +1,58 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python-version: ["3.10", "3.11", "3.12"]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .[all]
+          pip install ruff mypy pytest
+      - name: Release-hygiene validator (strict)
+        run: python scripts/check_release_hygiene.py --strict
+      - name: Doctor (guardrail invariants)
+        run: python -c "from werktools.cli import main; import sys; sys.exit(main(['hub','doctor']))"
+      - name: Unicode safety
+        run: python scripts/check_unicode_safety.py --strict .
+      - name: Lint
+        run: ruff check src/ tests/ examples/
+      - name: Types
+        run: mypy src/werktools --ignore-missing-imports
+      - name: Tests (offline)
+        run: pytest
+
+
+  bare-install:
+    name: Bare install smoke (no extras)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install core only (no extras)
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .
+          pip install pytest
+      - name: Import smoke
+        run: |
+          python -c "import werktools; from werktools.envelope import ok, err; from werktools.ledger import append, read; from werktools.classify import classify_tool; from werktools.policy import decide; from werktools.profile import load_profile; from werktools.redaction import redact_payload; from werktools.catalog import CatalogCard; print('core import OK')"
+      - name: Extras guard smoke
+        run: python -m pytest tests/test_extras_matrix.py -q

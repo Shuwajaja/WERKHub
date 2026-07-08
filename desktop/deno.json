@@ -1,0 +1,16 @@
+{
+  "tasks": {
+    "build:web": "pnpm build",
+    "desktop:dev": "deno desktop --hmr --allow-run --allow-net --allow-read --allow-env main.ts",
+    "desktop:build": "deno desktop --backend webview --include dist --output WERKHub.msi --allow-run --allow-net --allow-read --allow-env main.ts",
+    "build:backend": "python -m PyInstaller backend/werkhub-backend.spec --noconfirm --distpath backend/dist --workpath backend/build"
+  },
+  "nodeModulesDir": "auto",
+  "lint": {
+    "rules": {
+      "tags": [
+        "recommended"
+      ]
+    }
+  }
+}

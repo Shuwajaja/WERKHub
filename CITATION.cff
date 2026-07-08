@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "WERKHub"
+abstract: "WERKHub is a local, governed MCP control plane to browse, connect, and supervise agent MCP extensions."
+type: software
+authors:
+  - family-names: "Langner"
+    given-names: "Christian"
+repository-code: "https://github.com/ChristianLangner/WERK_HUB"
+license: AGPL-3.0-or-later
+version: 0.2.0rc2
+# date-released: YYYY-MM-DD  # TODO(operator): set the release date when publishing

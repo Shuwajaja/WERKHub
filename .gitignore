@@ -1,0 +1,33 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+build/
+dist/
+*.egg-info/
+.codex-remote-attachments/
+.deepeval/
+.werktools/
+outputs/
+
+# Secrets & local config — never commit
+.env
+.env.*
+!.env.example
+*.local.*
+*.key
+*.pem
+*.p12
+credentials.json
+secrets.*
+.mcp.json
+.venv/
+venv/
+
+# Internal launch-prep drafts (superseded by the real README/CI/SECURITY files;
+# kept locally, never published — one draft carried a personal email)
+docs/launch-drafts/
+
+# MkDocs build output (docs site)
+/site/

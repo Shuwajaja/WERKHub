@@ -1,0 +1,34 @@
+{
+  "servers": [
+    {
+      "id": "io.github.acme/docs-mcp",
+      "name": "docs-mcp",
+      "description": "Search project documentation",
+      "version": "1.2.0",
+      "repository": {"url": "https://github.com/acme/docs-mcp"},
+      "packages": [{"registryType": "npm", "identifier": "@acme/docs-mcp", "version": "1.2.0"}]
+    },
+    {
+      "id": "io.github.acme/db-tools",
+      "name": "db-tools",
+      "description": "Query databases via MCP",
+      "version": "0.4.0",
+      "packages": [{"registryType": "pypi", "identifier": "db-tools-mcp", "version": "0.4.0"}]
+    },
+    {
+      "id": "io.github.acme/box",
+      "name": "box-runner",
+      "description": "Run a sandboxed tool",
+      "version": "2.0.0",
+      "packages": [{"registryType": "oci", "identifier": "acme/box:latest", "version": "2.0.0"}]
+    },
+    {
+      "id": "io.github.acme/no-pkg",
+      "name": "no-pkg",
+      "description": "A remote-only server",
+      "version": "1.0.0",
+      "packages": []
+    }
+  ],
+  "next_cursor": null
+}

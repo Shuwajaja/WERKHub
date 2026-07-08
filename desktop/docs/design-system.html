@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en" data-theme="graphite">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>WERKHub — Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ── themes ─────────────────────────────────────────────────────────────── */
+:root[data-theme="graphite"]{
+  --bg:#0c0d10;--surface-1:#131519;--surface-2:#171a1f;--surface-3:#1c2026;--sunk:#08090b;
+  --fg:#e8ecf2;--secondary:#b0b8c8;--muted:#97a0b0;--faint:#909aae;
+  --interact:#6b78d6;--interact-hover:#7c88de;--on-accent:#0c0d10;
+  --ok:#4ea46e;--warn:#d7a13a;--err:#e0584e;--audit:#b9c2d6;--brand:#c4ccd6;
+  --border:rgba(255,255,255,.07);--border-strong:rgba(255,255,255,.13);
+  --state-hover:var(--surface-2);--state-selected:var(--surface-3);
+  --state-danger:rgba(224,88,78,.12);--state-accent:rgba(107,120,214,.12);--state-approve:rgba(78,164,110,.12);
+}
+:root[data-theme="light"]{
+  --bg:#eef0f4;--surface-1:#ffffff;--surface-2:#f4f6f9;--surface-3:#e8ebf1;--sunk:#e2e5ea;
+  --fg:#161922;--secondary:#3f4654;--muted:#687085;--faint:#8a91a0;
+  --interact:#5159b8;--interact-hover:#444cae;--on-accent:#ffffff;
+  --ok:#2f8f56;--warn:#946914;--err:#c4413a;--audit:#5b6678;--brand:#5b6678;
+  --border:rgba(0,0,0,.10);--border-strong:rgba(0,0,0,.18);
+  --state-hover:#e8ebf1;--state-selected:#e2e7f0;
+  --state-danger:rgba(196,65,58,.10);--state-accent:rgba(81,89,184,.10);--state-approve:rgba(47,143,86,.10);
+}
+:root[data-theme="paper"]{
+  --bg:#1a1510;--surface-1:#221c15;--surface-2:#2a231a;--surface-3:#322a1f;--sunk:#120e0a;
+  --fg:#ece2d2;--secondary:#c9bca6;--muted:#9d9080;--faint:#8a7d6c;
+  --interact:#c89a4e;--interact-hover:#d6a85c;--on-accent:#1a1510;
+  --ok:#7fa05a;--warn:#d9a641;--err:#d76a55;--audit:#cabfa6;--brand:#d8c9a8;
+  --border:rgba(255,240,210,.08);--border-strong:rgba(255,240,210,.15);
+  --state-hover:var(--surface-2);--state-selected:var(--surface-3);
+  --state-danger:rgba(215,106,85,.14);--state-accent:rgba(200,154,78,.14);--state-approve:rgba(127,160,90,.14);
+}
+:root[data-theme="nord"]{
+  --bg:#0f141c;--surface-1:#161d27;--surface-2:#1c2530;--surface-3:#232e3b;--sunk:#0a0e14;
+  --fg:#e1e9f2;--secondary:#aab8c9;--muted:#7f8fa3;--faint:#6f7e92;
+  --interact:#5fb0c9;--interact-hover:#6fbdd6;--on-accent:#0f141c;
+  --ok:#56b08a;--warn:#d6b15a;--err:#df6e6a;--audit:#b3c0d2;--brand:#c2cede;
+  --border:rgba(180,210,255,.07);--border-strong:rgba(180,210,255,.14);
+  --state-hover:var(--surface-2);--state-selected:var(--surface-3);
+  --state-danger:rgba(223,110,106,.13);--state-accent:rgba(95,176,201,.13);--state-approve:rgba(86,176,138,.13);
+}
+:root{
+  --radius-xs:2px;--radius-sm:3px;
+  --dur-fast:120ms;--ease:cubic-bezier(0,0,.2,1);
+  --wa-ring:color-mix(in srgb,var(--interact) 55%,transparent);
+  --focus-ring:0 0 0 2px var(--bg),0 0 0 4px var(--wa-ring);
+  --font-ui:"Inter",system-ui,sans-serif;--font-mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font-ui);font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased;transition:background var(--dur-fast) var(--ease),color var(--dur-fast) var(--ease);}
+.wrap{max-width:1020px;margin:0 auto;padding:32px 28px 80px;}
+h1{font-weight:600;font-size:22px;margin:0;display:flex;align-items:center;gap:12px;}
+.mark{width:20px;height:20px;border:2px solid var(--brand);transform:skewX(-8deg);display:inline-block;}
+.sub{color:var(--muted);font-family:var(--font-mono);font-size:12px;margin:6px 0 0;letter-spacing:.04em;}
+.werk-label{font-family:var(--font-ui);font-weight:510;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);}
+.werk-num{font-family:var(--font-mono);font-variant-numeric:tabular-nums lining-nums;}
+section{margin-top:40px;}
+section>.werk-label{display:block;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--border);}
+.grid{display:grid;gap:10px;}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;}
+.panel{background:var(--surface-1);border:1px solid var(--border);border-radius:var(--radius-xs);padding:16px;}
+.note{color:var(--faint);font-size:12px;margin-top:10px;}
+.cap{font-family:var(--font-mono);font-size:10px;color:var(--faint);letter-spacing:.08em;text-transform:uppercase;width:100%;margin:2px 0 -2px;}
+
+/* theme switch */
+.themebar{display:flex;gap:6px;margin-top:14px;}
+.tb{font-family:var(--font-mono);font-size:11px;letter-spacing:.04em;padding:5px 11px;border-radius:var(--radius-xs);cursor:pointer;background:var(--surface-1);color:var(--muted);border:1px solid var(--border);transition:all var(--dur-fast) var(--ease);}
+.tb:hover{color:var(--fg);}
+.tb[aria-pressed="true"]{background:var(--surface-3);color:var(--fg);box-shadow:inset 2px 0 0 var(--interact);}
+
+/* swatches */
+.swatches{grid-template-columns:repeat(auto-fill,minmax(140px,1fr));}
+.sw{background:var(--surface-1);border:1px solid var(--border);border-radius:var(--radius-xs);overflow:hidden;}
+.sw .chip{height:48px;border-bottom:1px solid var(--border);}
+.sw .meta{padding:7px 9px;}
+.sw .nm{font-size:12px;color:var(--fg);}
+.sw .hex{font-family:var(--font-mono);font-size:11px;color:var(--muted);}
+
+/* stamps & badges */
+.werk-stamp{display:inline-block;border:1px solid currentColor;padding:.15rem .55rem;border-radius:var(--radius-sm);font-family:var(--font-mono);font-size:.6rem;letter-spacing:.06em;}
+.identity{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-mono);font-size:11px;color:var(--secondary);background:var(--surface-2);border:1px solid var(--border-strong);border-radius:var(--radius-sm);padding:2px 8px;white-space:nowrap;}
+.identity .dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
+
+/* buttons */
+.btn{font-family:var(--font-ui);font-weight:500;font-size:13px;border-radius:var(--radius-xs);padding:7px 14px;cursor:pointer;border:1px solid transparent;display:inline-flex;align-items:center;gap:7px;white-space:nowrap;
+  transition:background var(--dur-fast) var(--ease),box-shadow var(--dur-fast) var(--ease),transform var(--dur-fast) var(--ease);}
+.btn:focus-visible{outline:none;box-shadow:var(--focus-ring);}
+.btn:active{transform:scale(.98);}
+.btn:disabled{opacity:.4;cursor:not-allowed;transform:none;}
+.btn-sm{font-size:12px;padding:4px 10px;}
+.btn-primary{background:var(--interact);color:var(--on-accent);}
+.btn-primary:hover:not(:disabled),.btn-primary.is-hover{background:var(--interact-hover);}
+.btn-secondary{background:var(--surface-2);color:var(--fg);border-color:var(--border-strong);}
+.btn-secondary:hover:not(:disabled),.btn-secondary.is-hover{background:var(--surface-3);}
+.btn-ghost{background:transparent;color:var(--secondary);}
+.btn-ghost:hover:not(:disabled),.btn-ghost.is-hover{background:var(--state-hover);color:var(--fg);}
+.btn-danger{background:transparent;color:var(--err);border-color:var(--err);}
+.btn-danger:hover:not(:disabled),.btn-danger.is-hover{background:var(--state-danger);}
+.btn.is-focus{box-shadow:var(--focus-ring);}
+.btn.is-active{transform:scale(.98);}
+
+/* button state matrix */
+.matrix{display:grid;grid-template-columns:90px repeat(5,1fr);gap:10px;align-items:center;}
+.matrix .h{font-family:var(--font-mono);font-size:10px;letter-spacing:.06em;color:var(--faint);text-transform:uppercase;}
+.matrix .rl{font-family:var(--font-mono);font-size:11px;color:var(--muted);}
+
+/* stats */
+.stats{grid-template-columns:repeat(auto-fit,minmax(150px,1fr));}
+.stat{background:var(--surface-1);border:1px solid var(--border);border-radius:var(--radius-xs);padding:14px 15px;display:flex;flex-direction:column;gap:8px;}
+.stat .l{display:flex;align-items:center;gap:6px;color:var(--muted);font-size:10px;letter-spacing:.08em;text-transform:uppercase;font-family:var(--font-mono);}
+.stat .v{font-family:var(--font-mono);font-variant-numeric:tabular-nums;font-size:30px;line-height:1;color:var(--fg);display:flex;align-items:baseline;gap:4px;}
+.stat .v small{font-size:13px;color:var(--muted);font-weight:400;}
+.delta{font-family:var(--font-mono);font-size:11px;}
+.delta.up{color:var(--ok);} .delta.down{color:var(--err);}
+.spark{display:flex;align-items:flex-end;gap:3px;height:30px;}
+.spark i{flex:1;background:var(--interact);border-radius:1px;opacity:.85;}
+.bar{height:6px;background:var(--sunk);border-radius:2px;overflow:hidden;}
+.bar i{display:block;height:100%;background:var(--interact);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1><span class="mark" aria-hidden="true"></span>WERKHub — Design System</h1>
+  <p class="sub">governed MCP control plane · component reference</p>
+  <div class="themebar" role="group" aria-label="Theme">
+    <button class="tb" data-set="graphite" aria-pressed="true">Graphite</button>
+    <button class="tb" data-set="light" aria-pressed="false">Light</button>
+    <button class="tb" data-set="paper" aria-pressed="false">Paper</button>
+    <button class="tb" data-set="nord" aria-pressed="false">Nord</button>
+  </div>
+</header>
+
+<!-- COLORS -->
+<section>
+  <span class="werk-label">Color tokens · active theme</span>
+  <div class="grid swatches" id="swatches"></div>
+  <p class="note">One job per accent · interaction = <code>--interact</code> · brand = mark only · status colors always paired with icon/label, never color-only.</p>
+</section>
+
+<!-- TYPOGRAPHY -->
+<section>
+  <span class="werk-label">Typography</span>
+  <div class="panel">
+    <div style="font-weight:600;font-size:22px;">Inter 590 — display</div>
+    <div style="font-weight:500;font-size:15px;margin-top:6px;">Inter 510 — UI label (the signature tell)</div>
+    <div style="margin-top:6px;color:var(--secondary);">Inter 400 — body / prose.</div>
+    <div class="werk-num" style="margin-top:10px;font-size:15px;color:var(--fg);">IBM Plex Mono — 14,820 tok · pid 4012 · 99.4% · 2026-06-27</div>
+  </div>
+</section>
+
+<!-- BUTTONS -->
+<section>
+  <span class="werk-label">Buttons · variants × states</span>
+  <div class="panel">
+    <div class="matrix">
+      <div></div>
+      <div class="h">Default</div><div class="h">Hover</div><div class="h">Focus</div><div class="h">Active</div><div class="h">Disabled</div>
+
+      <div class="rl">Primary</div>
+      <div><button class="btn btn-primary">Approve</button></div>
+      <div><button class="btn btn-primary is-hover">Approve</button></div>
+      <div><button class="btn btn-primary is-focus">Approve</button></div>
+      <div><button class="btn btn-primary is-active">Approve</button></div>
+      <div><button class="btn btn-primary" disabled>Approve</button></div>
+
+      <div class="rl">Secondary</div>
+      <div><button class="btn btn-secondary">Add connector</button></div>
+      <div><button class="btn btn-secondary is-hover">Add connector</button></div>
+      <div><button class="btn btn-secondary is-focus">Add connector</button></div>
+      <div><button class="btn btn-secondary is-active">Add connector</button></div>
+      <div><button class="btn btn-secondary" disabled>Add connector</button></div>
+
+      <div class="rl">Ghost</div>
+      <div><button class="btn btn-ghost">Cancel</button></div>
+      <div><button class="btn btn-ghost is-hover">Cancel</button></div>
+      <div><button class="btn btn-ghost is-focus">Cancel</button></div>
+      <div><button class="btn btn-ghost is-active">Cancel</button></div>
+      <div><button class="btn btn-ghost" disabled>Cancel</button></div>
+
+      <div class="rl">Danger</div>
+      <div><button class="btn btn-danger">⏻ Emergency stop</button></div>
+      <div><button class="btn btn-danger is-hover">⏻ Emergency stop</button></div>
+      <div><button class="btn btn-danger is-focus">⏻ Emergency stop</button></div>
+      <div><button class="btn btn-danger is-active">⏻ Emergency stop</button></div>
+      <div><button class="btn btn-danger" disabled title="no running process">⏻ Emergency stop</button></div>
+    </div>
+    <div class="cap" style="margin-top:18px;">Sizes &amp; live (try hover / Tab / click)</div>
+    <div class="row">
+      <button class="btn btn-primary btn-sm">Approve</button>
+      <button class="btn btn-primary">Approve</button>
+      <button class="btn btn-secondary">Mute connector</button>
+      <button class="btn btn-danger">⏻ Emergency stop</button>
+    </div>
+    <p class="note">Primary <code>--interact</code> + <code>--on-accent</code> ink (AA). One primary per surface · focus ring on Tab · scale .98 on press · 0.4 opacity + not-allowed when disabled · destructive separated &amp; danger-colored. "Emergency stop" = the connector kill / NOT-AUS, gated + confirmed.</p>
+  </div>
+</section>
+
+<!-- STATS -->
+<section>
+  <span class="werk-label">Stats elements</span>
+  <div class="grid stats">
+    <div class="stat">
+      <div class="l">⧉ Connectors live</div>
+      <div class="v">8<small>/ 11</small></div>
+      <div class="delta up">▲ +2 today</div>
+    </div>
+    <div class="stat">
+      <div class="l">◷ Context cost</div>
+      <div class="v">14.8<small>k tok</small></div>
+      <div class="delta down">▼ −5.8k after tune</div>
+    </div>
+    <div class="stat">
+      <div class="l">≣ Ledger events</div>
+      <div class="v">1,204</div>
+      <div class="spark"><i style="height:40%"></i><i style="height:55%"></i><i style="height:35%"></i><i style="height:70%"></i><i style="height:60%"></i><i style="height:85%"></i><i style="height:72%"></i></div>
+    </div>
+    <div class="stat">
+      <div class="l">✓ Chain integrity</div>
+      <div class="v">99.4<small>%</small></div>
+      <div class="bar"><i style="width:99.4%"></i></div>
+    </div>
+  </div>
+
+  <div class="panel row" style="gap:24px;margin-top:10px;">
+    <svg width="92" height="92" viewBox="0 0 88 88" aria-hidden="true" style="flex-shrink:0;">
+      <circle cx="44" cy="44" r="27.5" fill="none" stroke="var(--sunk)" stroke-width="13"/>
+      <path d="M 44 16 A 28 28 0 0 1 70 34 L 49 26 A 21 21 0 0 0 44 23 Z" fill="var(--ok)"/>
+      <path d="M 70 34 A 28 28 0 0 1 60 70 L 49 53 A 21 21 0 0 0 53 47 Z" fill="var(--ok)" opacity=".92"/>
+      <path d="M 60 70 A 28 28 0 0 1 24 64 L 38 49 A 21 21 0 0 0 47 53 Z" fill="var(--audit)"/>
+      <path d="M 24 64 A 28 28 0 0 1 44 16 L 44 23 A 21 21 0 0 0 31 51 Z" fill="var(--warn)" opacity=".7"/>
+    </svg>
+    <div>
+      <div class="werk-label" style="margin-bottom:8px;">Trust posture</div>
+      <table class="werk-num" style="border-collapse:collapse;font-size:12px;color:var(--secondary);">
+        <tr><td style="color:var(--ok);padding:2px 16px 2px 0;">▣ Security-Scanned</td><td style="color:var(--fg)">6</td><td style="color:var(--faint);padding-left:12px">55%</td></tr>
+        <tr><td style="color:var(--audit);padding:2px 16px 2px 0;">▣ Official</td><td style="color:var(--fg)">3</td><td style="color:var(--faint);padding-left:12px">27%</td></tr>
+        <tr><td style="color:var(--warn);padding:2px 16px 2px 0;">▲ Unverified</td><td style="color:var(--fg)">2</td><td style="color:var(--faint);padding-left:12px">18%</td></tr>
+      </table>
+    </div>
+  </div>
+  <p class="note">KPI cards: mono tabular value + uppercase label + delta/spark/bar. Donut keeps its accessible percentage-table fallback (color never alone).</p>
+</section>
+
+<!-- BADGES -->
+<section>
+  <span class="werk-label">Badges</span>
+  <div class="panel">
+    <div class="cap">Identity · model / cli / harness (neutral)</div>
+    <div class="row" style="margin-bottom:16px;">
+      <span class="identity"><span class="dot" style="background:#c4ccd6"></span>claude opus</span>
+      <span class="identity"><span class="dot" style="background:#c4ccd6"></span>claude sonnet</span>
+      <span class="identity"><span class="dot" style="background:#74aa9c"></span>gpt 5.5</span>
+      <span class="identity"><span class="dot" style="background:#8ab4f8"></span>gemini</span>
+    </div>
+    <div class="cap">Access posture · WERKHub real role axis</div>
+    <div class="row" style="margin-bottom:16px;">
+      <span class="werk-stamp" style="color:var(--audit);background:var(--state-accent)">ADMIN</span>
+      <span class="werk-stamp" style="color:var(--interact);background:var(--state-accent)">BALANCED</span>
+      <span class="werk-stamp" style="color:var(--muted)">READ-ONLY</span>
+    </div>
+    <div class="cap">Expert role families · color = family (portable → WERKAgent)</div>
+    <div class="row">
+      <span class="werk-stamp" style="color:#7b88db">PLANNER</span>
+      <span class="werk-stamp" style="color:#a988d6">FRONTEND</span>
+      <span class="werk-stamp" style="color:#6fb0d8">CODE-REVIEWER</span>
+      <span class="werk-stamp" style="color:#5cae7a">TDD-GUIDE</span>
+      <span class="werk-stamp" style="color:#d7a13a">SECURITY</span>
+      <span class="werk-stamp" style="color:#4fb3a6">RESEARCHER</span>
+      <span class="werk-stamp" style="color:#c08aa0">DATABASE</span>
+    </div>
+  </div>
+</section>
+
+<!-- SIGNATURE -->
+<section>
+  <span class="werk-label">Signature elements</span>
+  <div class="panel row" style="gap:18px;">
+    <span class="werk-stamp" style="color:var(--ok);background:var(--state-approve)">✓ CHAIN VERIFIED</span>
+    <span style="display:inline-flex;align-items:center;gap:5px;background:var(--ok);color:var(--on-accent);padding:.1rem .45rem;border-radius:var(--radius-sm);font-family:var(--font-mono);font-size:.6rem;letter-spacing:.06em;">● LIVE</span>
+    <span style="display:inline-block;padding:6px 12px;background:var(--surface-2);box-shadow:inset 2px 0 0 var(--interact);font-size:12px;">.werk-notch · selection</span>
+    <span class="werk-num" style="color:var(--faint);font-size:12px;">a3caef8c · hash</span>
+  </div>
+</section>
+
+<footer style="margin-top:44px;padding-top:16px;border-top:1px solid var(--border);">
+  <p class="sub">Canon: design-bible/DESIGN_SYSTEM.md · tokens: src/tokens.css · components: src/badges + src/views · Graphite = the shipped A-FINAL theme; Light/Paper/Nord are explorations.</p>
+</footer>
+
+</div>
+<script>
+const TOKENS=[["--bg","ground"],["--surface-1","surface-1"],["--surface-2","surface-2"],["--surface-3","surface-3"],["--sunk","sunk"],["--fg","fg / ink"],["--secondary","secondary"],["--muted","muted"],["--interact","interact"],["--ok","ok"],["--warn","warn"],["--err","err"],["--audit","audit"],["--brand","brand"]];
+function hex(v){v=v.trim();return v;}
+function paint(){
+  const cs=getComputedStyle(document.documentElement);
+  document.getElementById('swatches').innerHTML=TOKENS.map(([t,n])=>{
+    const val=hex(cs.getPropertyValue(t));
+    return `<div class="sw"><div class="chip" style="background:var(${t})"></div><div class="meta"><div class="nm">${n}</div><div class="hex">${val}</div></div></div>`;
+  }).join('');
+}
+document.querySelectorAll('.tb').forEach(b=>b.addEventListener('click',()=>{
+  document.documentElement.setAttribute('data-theme',b.dataset.set);
+  document.querySelectorAll('.tb').forEach(x=>x.setAttribute('aria-pressed', x===b?'true':'false'));
+  paint();
+}));
+paint();
+</script>
+</body>
+</html>

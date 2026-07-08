@@ -1,0 +1,67 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "werktools"
+version = "0.1.0"
+description = "WERKHub - the local, governed MCP control plane (browse, connect, supervise agent extensions)"
+readme = "README.md"
+license = { text = "AGPL-3.0-or-later" }
+requires-python = ">=3.10"
+dependencies = []
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Application Frameworks",
+]
+
+[project.urls]
+Homepage = "https://github.com/Shuwajaja/WERKHub"
+Source = "https://github.com/Shuwajaja/WERKHub"
+Changelog = "https://github.com/Shuwajaja/WERKHub/blob/main/CHANGELOG.md"
+Issues = "https://github.com/Shuwajaja/WERKHub/issues"
+
+[project.optional-dependencies]
+server = ["fastmcp>=2.2"]
+yaml   = ["pyyaml"]
+# werktools.tools.swarm is pure stdlib; the extra stays as an empty marker so
+# `pip install werktools[swarm]` keeps working without pulling FastMCP.
+swarm  = []
+# lifecycle process-supervision stays pure stdlib (ctypes Job Objects on
+# Windows); the extra is a marker so a future psutil fallback can attach
+# without changing the dependency-free core.
+lifecycle = []
+# model-worker dispatch needs an HTTP client; isolated so the core stays dep-free.
+worker = ["httpx>=0.27"]
+# Doctor TOML import (Codex ~/.codex/config.toml). tomllib is stdlib on 3.11+;
+# this pulls the tomli backport only on 3.10 so the onboarding Doctor can read
+# Codex configs without forcing a Python upgrade. Core stays zero-dependency.
+onboard = ["tomli>=2.0; python_version < '3.11'"]
+all    = ["werktools[server]", "werktools[yaml]", "werktools[worker]", "werktools[onboard]"]
+
+[project.scripts]
+werktools = "werktools.cli:main"
+werktools-swarm = "werktools.__main__:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/werktools"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I"]
+
+[tool.mypy]
+python_version = "3.10"
+strict = false
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

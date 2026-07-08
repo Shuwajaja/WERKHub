@@ -1,0 +1,244 @@
+/* WERKHub documentation theme — A-FINAL palette override for MkDocs Material slate scheme */
+
+/* Google Fonts import */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600&family=Inter:wght@400;510;590&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+/* ── A-FINAL color tokens ─────────────────────────────────────────────────── */
+[data-md-color-scheme="slate"] {
+  /* Ground / surface ladder */
+  --wh-bg:               #07080a;
+  --wh-ground:           #0c0d10;
+  --wh-surface:          #131519;
+  --wh-card:             #171a1f;
+  --wh-elevated:         #1c2026;
+  --wh-sunk:             #08090b;
+
+  /* Ink / text */
+  --wh-ink:              #e8ecf2;
+  --wh-ink-2:            #b0b8c8;
+  --wh-muted:            #8b93a3;
+  --wh-faint:            #737d94;
+
+  /* Borders */
+  --wh-border:           rgba(255, 255, 255, 0.07);
+  --wh-border-strong:    rgba(255, 255, 255, 0.13);
+
+  /* Semantic accents — one meaning each, never swapped */
+  --wh-indigo:           #6b78d6;   /* interaction: links, focus, active nav */
+  --wh-indigo-text:      #7b88db;   /* AA-safe indigo on dark surfaces */
+  --wh-green:            #4ea46e;   /* ok / connected / approved */
+  --wh-amber:            #d7a13a;   /* needs-you / approval-required */
+  --wh-red:              #e0584e;   /* fail / destructive / denied */
+  --wh-slate:            #b9c2d6;   /* audit / changes-requested */
+  --wh-platinum:         #c4ccd6;   /* BRAND ONLY — Seam-W mark + wordmark */
+
+  /* ── MkDocs Material overrides ─────────────────────────────────────────── */
+  --md-default-bg-color:            var(--wh-ground);
+  --md-default-fg-color:            var(--wh-ink);
+  --md-default-fg-color--light:     var(--wh-ink-2);
+  --md-default-fg-color--lighter:   var(--wh-muted);
+  --md-default-fg-color--lightest:  var(--wh-faint);
+
+  --md-primary-fg-color:            var(--wh-indigo);
+  --md-primary-bg-color:            var(--wh-ground);
+  --md-accent-fg-color:             var(--wh-indigo);
+
+  --md-code-bg-color:               var(--wh-sunk);
+  --md-code-fg-color:               var(--wh-ink-2);
+
+  --md-typeset-a-color:             var(--wh-indigo-text);
+
+  --md-nav-item-active-color:       var(--wh-indigo-text);
+
+  --md-header-bg-color:             var(--wh-surface);
+  --md-footer-bg-color:             var(--wh-surface);
+
+  --md-admonition-bg-color:         var(--wh-card);
+}
+
+/* ── Typography ──────────────────────────────────────────────────────────── */
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3,
+.md-typeset h4 {
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.md-typeset code,
+.md-typeset pre {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.85em;
+}
+
+body,
+.md-typeset {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* ── Site header / nav ───────────────────────────────────────────────────── */
+.md-header {
+  background-color: var(--wh-surface);
+  border-bottom: 1px solid var(--wh-border);
+}
+
+.md-header__title {
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--wh-platinum);
+}
+
+/* Logo sizing */
+.md-header__button.md-logo img,
+.md-header__button.md-logo svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* ── Navigation ─────────────────────────────────────────────────────────── */
+.md-nav__link--active,
+.md-nav__link:hover {
+  color: var(--wh-indigo-text);
+}
+
+.md-nav__item--active > .md-nav__link {
+  color: var(--wh-indigo-text);
+  font-weight: 590;
+}
+
+/* ── Links ──────────────────────────────────────────────────────────────── */
+.md-typeset a {
+  color: var(--wh-indigo-text);
+  text-decoration: none;
+}
+
+.md-typeset a:hover {
+  color: var(--wh-indigo);
+  text-decoration: underline;
+}
+
+/* ── Focus ring — indigo, keyboard-visible ───────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--wh-indigo);
+  outline-offset: 2px;
+}
+
+/* ── Code blocks ─────────────────────────────────────────────────────────── */
+.md-typeset pre > code {
+  background-color: var(--wh-sunk);
+  border: 1px solid var(--wh-border);
+  border-radius: 3px;
+}
+
+/* ── Admonitions ─────────────────────────────────────────────────────────── */
+.md-typeset .admonition,
+.md-typeset details {
+  background-color: var(--wh-card);
+  border-left-color: var(--wh-indigo);
+  border-radius: 3px;
+}
+
+.md-typeset .admonition.warning,
+.md-typeset details.warning {
+  border-left-color: var(--wh-amber);
+}
+
+.md-typeset .admonition.danger,
+.md-typeset details.danger {
+  border-left-color: var(--wh-red);
+}
+
+.md-typeset .admonition.tip,
+.md-typeset details.tip {
+  border-left-color: var(--wh-green);
+}
+
+/* ── Tables ──────────────────────────────────────────────────────────────── */
+.md-typeset table:not([class]) {
+  border: 1px solid var(--wh-border-strong);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.md-typeset table:not([class]) th {
+  background-color: var(--wh-surface);
+  color: var(--wh-ink-2);
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  font-size: 0.8em;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.md-typeset table:not([class]) tr:nth-child(even) td {
+  background-color: var(--wh-card);
+}
+
+/* ── Trust-tier badge stamps (3px radius, rectangular, text-labelled) ────── */
+.wh-tier-official {
+  display: inline-block;
+  padding: 1px 6px;
+  border: 1px solid var(--wh-green);
+  border-radius: 3px;
+  color: var(--wh-green);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.75em;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.wh-tier-scanned {
+  display: inline-block;
+  padding: 1px 6px;
+  border: 1px solid var(--wh-slate);
+  border-radius: 3px;
+  color: var(--wh-slate);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.75em;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.wh-tier-unverified {
+  display: inline-block;
+  padding: 1px 6px;
+  border: 1px solid var(--wh-muted);
+  border-radius: 3px;
+  color: var(--wh-muted);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.75em;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ── Landing hero ─────────────────────────────────────────────────────────── */
+.wh-hero {
+  margin: 2rem 0 2.5rem;
+  text-align: center;
+}
+
+.wh-hero img,
+.wh-hero svg {
+  max-width: 100%;
+  border: 1px solid var(--wh-border);
+  border-radius: 3px;
+}
+
+.wh-oneliner {
+  font-size: 1.15rem;
+  color: var(--wh-ink-2);
+  margin: 0.5rem 0 1.5rem;
+  text-align: center;
+}
+
+/* ── Footer ──────────────────────────────────────────────────────────────── */
+.md-footer {
+  background-color: var(--wh-surface);
+  border-top: 1px solid var(--wh-border);
+}
+
+.md-footer-meta {
+  background-color: var(--wh-surface);
+}

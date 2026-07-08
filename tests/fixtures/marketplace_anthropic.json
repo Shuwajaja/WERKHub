@@ -1,0 +1,7 @@
+{
+  "skills": [
+    {"name": "Review Policy", "description": "Federated duplicate of a local skill", "tags": ["review"], "risk": "read"},
+    {"name": "Doc Writer", "description": "Writes documentation", "tags": ["docs"], "profiles": ["*"], "risk": "read", "source": "https://example.com/doc-writer/SKILL.md"},
+    {"name": "", "description": "missing name should be skipped"}
+  ]
+}

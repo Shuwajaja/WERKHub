@@ -1,0 +1,54 @@
+[
+  {
+    "variant": {"label": "solo-fast", "model": "haiku", "effort": "low", "workflow": "solo", "params": {}},
+    "tokens_in": 500,
+    "tokens_out": 150,
+    "cost_usd": 0.002,
+    "correct": true,
+    "error_count": 0,
+    "quality": 3,
+    "duration_s": 4.2,
+    "output_ref": "solo-fast-out.txt",
+    "judged": true,
+    "status": "ok"
+  },
+  {
+    "variant": {"label": "panel-balanced", "model": "sonnet", "effort": "medium", "workflow": "panel", "params": {"judges": 3}},
+    "tokens_in": 1800,
+    "tokens_out": 600,
+    "cost_usd": 0.018,
+    "correct": true,
+    "error_count": 0,
+    "quality": 5,
+    "duration_s": 18.5,
+    "output_ref": "panel-balanced-out.txt",
+    "judged": true,
+    "status": "ok"
+  },
+  {
+    "variant": {"label": "loop-deep", "model": "opus", "effort": "high", "workflow": "loop", "params": {"iterations": 3}},
+    "tokens_in": 4200,
+    "tokens_out": 1400,
+    "cost_usd": 0.075,
+    "correct": true,
+    "error_count": 1,
+    "quality": 4,
+    "duration_s": 62.0,
+    "output_ref": "loop-deep-out.txt",
+    "judged": true,
+    "status": "ok"
+  },
+  {
+    "variant": {"label": "panel-skip", "model": "sonnet", "effort": "medium", "workflow": "panel", "params": {}},
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "cost_usd": 0.0,
+    "correct": false,
+    "error_count": 0,
+    "quality": 0,
+    "duration_s": 0.0,
+    "output_ref": "",
+    "judged": false,
+    "status": "skipped"
+  }
+]

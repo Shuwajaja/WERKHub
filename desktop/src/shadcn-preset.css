@@ -1,0 +1,24 @@
+/* GENERATED from design-system.json by scripts/gen-tokens.mjs — do not edit by hand. */
+/* shadcn/ui preset — import after tokens.css to render any shadcn component/block on-brand. */
+:root {
+  --background: var(--bg);
+  --foreground: var(--fg);
+  --card: var(--surface-1);
+  --card-foreground: var(--fg);
+  --popover: var(--float);
+  --popover-foreground: var(--fg);
+  --primary: var(--interact);
+  --primary-foreground: var(--on-accent);
+  --secondary: var(--surface-2);
+  --secondary-foreground: var(--fg);
+  --muted: var(--surface-2);
+  --muted-foreground: var(--muted);
+  --accent: var(--surface-3);
+  --accent-foreground: var(--fg);
+  --destructive: var(--err);
+  --destructive-foreground: var(--on-accent);
+  --border: var(--border-strong);
+  --input: var(--border-strong);
+  --ring: var(--interact);
+  --radius: var(--radius-xs);
+}
