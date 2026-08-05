@@ -345,6 +345,12 @@ class RegistryCandidate:
     def from_dict(cls, raw: dict[str, Any]) -> "RegistryCandidate":
         import re
 
+        # Registry schema 2025-12-11 wraps the entry in a "server" envelope
+        # ({"server": {...}, "_meta": ...}); older responses are flat. Unwrap.
+        inner = raw.get("server")
+        if isinstance(inner, dict):
+            raw = inner
+
         name = str(raw.get("name", ""))
         raw_id = str(raw.get("id", name))
         sanitized = re.sub(r"[^a-zA-Z0-9_-]", "-", raw_id)[:64] or "server"
